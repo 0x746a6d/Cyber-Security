@@ -1,0 +1,55 @@
+Wireshark Lab
+
+Wireshark is excellent for, 
+- Network analysis
+  - whos communicating
+  - whos sending requests 
+  - see if anything is in the background
+- Troubleshooting
+  - identify TCP problems
+  - find network malfunctions
+  - examine all the IP addresses
+- Software analysis
+  - which protocol is used by which software
+  - measure bandwith usage of certain softwares
+- security analysis
+  - analyse ports
+  - analyse suspicious communications
+  - analyze telemetry
+
+
+I am using a kali linux vm in VirtualBox and will be examining a network.
+This means that the GUI will be used.  
+
+Some of the filters that I have been using are:
+
+ip.addr==x.x.x.x
+  - This filters for any packet that has x.x.x.x as the source or destination IP address.
+  - Great for analyzing specific traffic. 
+
+http or dns
+  - Sets a filter to display all http and dns protocol.
+  - You can then narrow those down even further to the exact protocol you need. 
+
+tcp.port==xxx
+  - Sets filters to display all TCP packet with a specific source or destination port.
+  
+tcp.flags.reset==1
+  - Sets filters to display all TCP resets.
+  - All packets have a TCP, if this is set to 1, it tells the receiving computer that it should at once stop using that connection.
+  - This is powerful, being a TCP reset kills a TCP connection immediately.
+
+tcp contains xxx
+  - It’s a filter that displays all TCP packets that contain a certain term (instead of xxx, use what term you’re looking for). For example, if you are looking for a specific term appearing in the packet, this filter is what you need.
+
+tcp.stream eq X
+  - Follows a tcp stream.
+
+tcp.seq == x
+  - Filters by sequence number.
+
+tcp.flags.push == 1
+  - Important for troubleshooting, this filter detects push events.
+
+http.request
+  - This one filters all HTTP GET and POST requests. It can show the most accessed webpages.
