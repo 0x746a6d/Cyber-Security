@@ -1,0 +1,64 @@
+--------------------------------------------
+Windows Server 2012 R2 Hardening Guide
+Created by Tanner Michael
+--------------------------------------------
+This guide is for anyone looking to harden their Windows Server machines.
+--------------------------------------------
+
+Lets get started!
+
+Installs of Windows Server might better suit you if you do a custom install and only download the required componenets. 
+
+Always keep the admin account secure. Most brute force attacks are directed at this account as it has the most priveledges. 
+The best way to keep your admin account secure is to rename the 'Administrator' username to something else. 
+
+Setup User account policies. If multiple users access your server, then set up User Account policies. 
+- Don't allow empty passwords
+- Enforce minimum password length and complexity
+- Use a lockout policy
+- Don't store passwords using reversible encryption
+- Enable 2FA
+
+Employing the Principle of "Least Priviledge" is huge. 
+- Avoid potential security issues due to mishandling of access rights.
+- Provide the minimum rights each user needs to carry out his/her duties.
+- Set up a Group Policy or use Role Base Access Control (RBAC) component to specify access restrictions according to your own requirements. 
+
+Disable unnecessary network ports and services.
+- Only enable the network ports used by the OS and installed components
+- Disable/close the remaining ports
+- Run a port scan of the system to confirm all nonfunctional ports are properly protected
+- Disable all unused network services (Bluetooth, wifi, etc) to prevent unathorized access
+
+General Security Settings
+- Disable unneeded services
+- Remove unneeded Windows componenets
+- Do not use AUTORUN. Untrusted code can be run without the direct knowledge of the user
+- Require Ctrl + Alt + Del for interactice logins
+- Configure a machine inactivity limit to protect idle interactive sessions
+
+
+
+This next section is a little more nitty-gritty and will be more detailed than the basic stuff above. Have fun!
+
+Organizational Security 
+Maintain an inventory record for each server that clearly documents its baseline configuration and records each change to the server.
+Test and validate every proposed change to server hardware or software before moving to a production environment. 
+Regularly perform risk assessments and fix all issues in a timely manner. 
+
+User Account Security Hardening 
+Ensure all passwords meet password best practice guidelines. 
+Disallow users from creating and logging in with Microsoft accounts
+Disable the guest account. 
+Do not allow "everyone" permissions to apply anonymous users.
+Promptly disable or delete unusued user accounts. 
+
+Network Security Configuration 
+Enable the Windows Firewall in all profiles (domain, private, public) and configure it to block inbound traffic by default
+Perform port blocking at the network setting level. Determine which ports need to be open and restrict access to all other ports. 
+Restrict the ability to access each computer from the network to Authenticated Users only. 
+Do not grant any users the 'act as part of the operating system' right.
+Deny gues account the ability to log on as a service, a batch job, locally or via RDP
+RDP is utilized, set the RDP connection encryption level to high.
+Disable NetBIOS over TCP/IP
+
