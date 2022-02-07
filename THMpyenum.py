@@ -1,1 +1,20 @@
-#this is a test
+# found via TryHackMe
+
+# run this by putting in a wordlists location on line 10
+# then do python3 THMpyenum.py <the ip you want to scan>
+
+
+
+import requests
+import sys 
+
+sub_list = open("wordlist.txt").read() #directory to wherever the wordlists are
+directories = sub_list.splitlines()
+
+for dir in directories:
+    dir_enum = f"http://{sys.argv[1]}/{dir}.html" 
+    r = requests.get(dir_enum)
+    if r.status_code==404: 
+        pass
+    else:
+        print("Valid directory:" ,dir_enum)
